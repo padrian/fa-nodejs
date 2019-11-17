@@ -1,0 +1,30 @@
+{
+  "name": "k8s-nodejs",
+  "version": "1.0.0",
+  "description": "NodeJS on Kubernetes, Guidedlabs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuidedLabs/k8s-nodejs.git"
+  },
+  "author": "adrian@guidedlabs.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuidedLabs/k8s-nodejs/issues"
+  },
+  "homepage": "https://github.com/GuidedLabs/k8s-nodejs#readme",
+  "dependencies": {
+    "@rama41222/node-logger": "^1.0.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
