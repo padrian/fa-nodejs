@@ -11,6 +11,7 @@ node {
           }
 
           stage('Tests') {
+            checkout scm
             docker.image('node:carbon').inside {
               withEnv(['HOME=.']){
                 sh 'npm install'
@@ -19,6 +20,7 @@ node {
           }
 
           stage('Docker Build') {
+            checkout scm
             docker.withRegistry('https://366670401047.dkr.ecr.us-east-2.amazonaws.com/future-airlines/k8s-nodejs','ecr:us-east-2:aws-ecr') {
               def customImage = docker.build("future-airlines/k8s-nodejs:${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
               customImage.push()
@@ -27,6 +29,7 @@ node {
           } // build docker image
 
           stage('Deploy Staging'){
+            checkout scm
             sh 'wget https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz && tar -xvf helm-v2.13.1-linux-amd64.tar.gz && mv linux-amd64/helm .'
             sh './helm lint --strict k8s-nodejs'
             sh './helm package k8s-nodejs --save=false'
